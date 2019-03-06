@@ -1,0 +1,26 @@
+{
+  "name": "twitter-replies-parser",
+  "version": "1.0.0",
+  "description": "Takes replies from a tweet and parses them into a spreadsheet.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nebrius/twitter-replies-parser.git"
+  },
+  "author": "Bryan Hughes <bryan@nebri.us>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nebrius/twitter-replies-parser/issues"
+  },
+  "homepage": "https://github.com/nebrius/twitter-replies-parser#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "handlebars": "^4.1.0",
+    "oauth": "^0.9.15"
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function analyzeTweet() {
+  const url = document.getElementById('url');
+  fetch('/api/analyze', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      tweetUrl: url.value
+    })
+  });
+}
+</script>
+</head>
+<body>
+<h1>Twitter Replies Parser</h1>
+<div>
+  <div>
+    <span>Enter tweet URL: </span>
+    <input type="text" id="url" />
+  </div>
+  <div>
+    <button onclick="analyzeTweet()">Analyze</button>
+  </div>
+</div>
+</body>
+</html>
