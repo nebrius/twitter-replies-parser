@@ -82,7 +82,7 @@ app.post('/api/analyze', (req, clientRes) => {
       tweetDictionary[tweet.id_str] = {
         ...tweet,
         replies: [],
-        text
+        text: entities.decode(text)
       };
     }
     if (!tweetDictionary.hasOwnProperty(rooTweetId)) {
@@ -135,6 +135,7 @@ app.post('/api/analyze', (req, clientRes) => {
     function processTweet(thread, tweet) {
       thread.push({
         author: `${tweet.user.name} (@${tweet.user.screen_name})`,
+        url: `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`,
         text: tweet.text
       });
       for (const reply of tweet.replies) {
@@ -145,7 +146,11 @@ app.post('/api/analyze', (req, clientRes) => {
     const tweetThreads = rootTweet.replies.map((reply) => processTweet([], reply));
 
     const filename = join(downloadsFolder(), `${username}-${rooTweetId}.json`);
-    writeFile(filename, JSON.stringify(tweetThreads, null, '  '), (err) => {
+    const fileData = {
+      url: tweetUrl,
+      responses: tweetThreads
+    }
+    writeFile(filename, JSON.stringify(fileData, null, '  '), (err) => {
       if (err) {
         clientRes.sendStatus(500);
       } else {
