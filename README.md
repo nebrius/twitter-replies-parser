@@ -1,6 +1,21 @@
-# Twitter Peplies Parser
+# Twitter Replies Parser
 
-Takes replies from a tweet and parses them into a spreadsheet.
+Uses the Twitter API to find all replies to a tweet and save them to a JSON file.
+
+To run this application, you will first need to create a [Twitter App](https://developer.twitter.com/). I used a premium app for this, not a standard app, so YMMV if you try this with a standard app.
+
+Then, you will need to clone this project and set the following environment variables:
+
+- TWITTER_CONSUMER_KEY: your Consumer API Key
+- TWITTER_CONSUMER_SECRET: your Consumer API secret key
+- TWITTER_ACCESS_TOKEN: your access token, which you can create in the same page containing your Consumer API key
+- TWITTER_ACCESS_SECRET: your access token secret
+
+You can find these on your app page, which as of this writing looks like this:
+
+![Twitter App Page showing all your keys](https://user-images.githubusercontent.com/1141386/53982209-2da67a80-40c9-11e9-8926-1c60eba09d6f.jpg)
+
+Once you've configured everything, run this app with `npm start` and then open your browser to [http://localhost:8080](http://localhost:8080). Enjoy!
 
 ## License
 
