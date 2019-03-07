@@ -17,6 +17,8 @@ You can find these on your app page, which as of this writing looks like this:
 
 Once you've configured everything, run this app with `npm start` and then open your browser to [http://localhost:8080](http://localhost:8080). Enjoy!
 
+**Note:** Twitter doesn't have any APIs to _directly_ fetch the replies to a tweet, so this app uses an algorithm to try and find as many replies as it can. It is highly accurate, but not 100% accurate. Notably, it fails to pick up replies to tweets where the person replying excludes the author of the original tweet in the "reply-to" section.
+
 ## License
 
 MIT License
