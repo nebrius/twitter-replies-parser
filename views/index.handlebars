@@ -12,7 +12,7 @@ function analyzeTweet() {
     body: JSON.stringify({
       tweetUrl: url.value
     })
-  });
+  }).then(() => alert('done'));
 }
 </script>
 </head>

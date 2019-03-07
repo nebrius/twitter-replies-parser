@@ -2,7 +2,7 @@ const express = require('express');
 const { json } = require('body-parser');
 const { compile } = require('handlebars');
 const { join } = require('path');
-const { readFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 const { OAuth } = require('oauth');
 
 const PORT = 8080;
@@ -113,6 +113,8 @@ app.post('/api/analyze', (req, clientRes) => {
       tweetDictionary[tweet.in_reply_to_status_id_str].replies.push(tweet);
     }
 
+    // TODO: collapse root tweets!
+
     function processTweet(thread, tweet) {
       thread.push({
         author: `${tweet.user.name} (@${tweet.user.screen_name})`,
@@ -124,7 +126,17 @@ app.post('/api/analyze', (req, clientRes) => {
       return thread;
     }
     const tweetThreads = rootTweet.replies.map((reply) => processTweet([], reply));
-    console.log(tweetThreads);
+    let csvData = '';
+    function escapeCSVField(text) {
+      return text.replace(/\"/g, '""').replace(/\n/g, '\\\\n');
+    }
+    for (const thread of tweetThreads) {
+      csvData += 'thread:,,\n';
+      for (const reply of thread) {
+        csvData += `,"${escapeCSVField(reply.author)}","${escapeCSVField(reply.text)}"\n`
+      }
+    }
+    writeFileSync(join(__dirname, '..', `${username}.csv`), csvData);
 
     clientRes.send('ok');
   }

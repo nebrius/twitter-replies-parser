@@ -1,0 +1,134 @@
+thread:,,
+,"Soham Adwani (@SnazzyHam)","@nebrius Controversial but I use FileZilla to upload files to my VPS and then run a little shell script on the serv… https://t.co/7Y3mdlT4fH"
+thread:,,
+,"Hunter James (@hunterjamesio)","@nebrius I use aws-serverless-express &amp; Claudia.js to generate a package which I upload to Lambda."
+thread:,,
+,"Alan Hietala (@alanhietala)","@nebrius GitHub &gt; Circleci &gt; GKE"
+thread:,,
+,"Lesley (@LesleyAndreza)","@nebrius I use puppeteer to generate PDFs from HTML files"
+thread:,,
+,"Yaw Joseph Etse (@yawetse)","@nebrius Usually PM2"
+thread:,,
+,"Thibaut Nguyen ಠ_ರೃ (@teebot)","@nebrius @code Heroku. Love the simplicity of it, the quick add-ons and CI"
+thread:,,
+,"Steven Beeckman (@stevenbeeckman)","@nebrius Git :-o (it’s not meant for deployments but hey, what are you gonna do? :-D) https://t.co/4GobctjR1S"
+thread:,,
+,"Marques Kevin (@KM_Marques)","@nebrius Github -&gt; Circleci -&gt; EB | Lambda"
+thread:,,
+,"Max Rovensky (@MaxRovensky)","@nebrius @zeithq, cause  it's great, fast, painless and does a lot of annoying things automatically for you 😏"
+thread:,,
+,"Smally (@ItsNotQSmally)","@nebrius @code Three things:\\n~ Packages (preferably my own).\\n~ NPM for managing.\\n~ aaaaaaaand Visual Studio @code."
+thread:,,
+,"Julian Pittas (@julianpitt)","@nebrius I build mainly serverless apps so the serverless framework. if I'm building for firebase then the firebase… https://t.co/zspKGhGaTm"
+thread:,,
+,"Martin Giannechini (@marttingm)","@nebrius docker, pm2, nginx"
+thread:,,
+,"Tamer Ibrahim (@TheLastTamurai)","@nebrius Last project (Nodejs + React), just Heroku, very easy, just one command. But had to remove docker after a… https://t.co/zBIKcsFJwb"
+thread:,,
+,"Etienne Martin (@_etiennemartin)","@nebrius Gitlab: self-hosted, rich feature set\\nDocker: predictability\\nk8s: reliable, scalability"
+thread:,,
+,"Nimeet (@NimeetShah)","@nebrius @code pm2 for automatic restarts on server crashes."
+thread:,,
+,"Awais.dev (@MrAhmadAwais)","@nebrius I use 🆚@Code :)"
+thread:,,
+,"cedmax 🏳️‍🌈 (@cedmax)","@nebrius For my pet projects I'm using https://t.co/DbdRCGH9ll: I find it affordable and straightforward."
+thread:,,
+,"Vel M (@velmj)","@nebrius https://t.co/FAO6uPxEAL for super quick poc.  @goserverless for production deployment."
+thread:,,
+,"Ricardo Bin (@ricardohbin)","@nebrius k8s ftw. In 10 seconds you rollout an app"
+thread:,,
+,"Félix Saparelli (@passcod)","@nebrius Ansible for work stuff because we run in a private cloud, deployed to systemd services. Most ""friendly"" to… https://t.co/x8ekoVHCd8"
+thread:,,
+,"Matteo Collina (@matteocollina)","@nebrius from systemd to terraform, ansible and docker+helm+kubernetes. Also aws lambda and azure functions."
+,"Bryan Hughes (@nebrius)","@matteocollina Thanks Matteo! I’m curious, in your experience, what have been the noticeable differences between La… https://t.co/qya6JmHZPW"
+,"Matteo Collina (@matteocollina)","@nebrius I’m not a fan either way :/. I like having a server to ssh into if I need to. The startup time of azure fu… https://t.co/g5anRHjfTc"
+,"Bryan Hughes (@nebrius)","@matteocollina Totally legit, thanks."
+thread:,,
+,"Adam Pietrasiak (@pie6k)","@nebrius @code I use zeit. For simplicity, business model and good dev experience. I'm missing good local dev tools… https://t.co/fWGxX20ci4"
+thread:,,
+,"Emily Kauffman (@intrepid_em)","@nebrius @_clarkio I work on an IoT application and I also use systemd with a web app/api running on localhost in a Chrome kiosk mode!"
+thread:,,
+,"Joe Finnigan (@_Joe)","@nebrius Github -&gt; Evennode. Simple, cheaper than others, zero downtime deploys 😍"
+,"Bryan Hughes (@nebrius)","@_Joe Cool, I hadn't heard of Evennode before, thanks!"
+thread:,,
+,"Chris Coombs (@8_b1t_chr15)","@nebrius Webpack on Azure DevOps to package Lambda functions. Azure DevOps deploys to AWS with CloudFormation based… https://t.co/qzd5ulZGqr"
+thread:,,
+,"Mikeal Rogers (@mikeal)","@nebrius For almost everything I use @zeithq. A couple newer projects where I’m literally blowing out the Lambda ra… https://t.co/PhcPbleRXp"
+,"Bryan Hughes (@nebrius)","@mikeal @zeithq I've heard really good things about Zeit, but haven't heard of https://t.co/nu2LM0s9Od. Cool to see… https://t.co/BsQGCAIFxv"
+,"xnoɹǝʃ uɐıɹq 🐻 (@brianleroux)","@nebrius @mikeal @zeithq Fwiw I don't think these things are competitive. Architect is a way to deploy functions to… https://t.co/N6ZJuVbrLt"
+,"Mikeal Rogers (@mikeal)","@nebrius @zeithq arc is a tool for “dealing with AWS” :) it’s closely tied to the AWS API’s and you can really tell… https://t.co/YFLIH6WaNf"
+thread:,,
+,"Jonathan Davila (@DefionsCode)","@nebrius We use circle ci and the aws sdk via an npm script"
+thread:,,
+,"Adam (@etoxin)","@nebrius I just recently created a small slackbot and built it in various environments to learn the pros/cons. They… https://t.co/qmGNLhg2VI"
+,"Bryan Hughes (@nebrius)","@etoxin Very cool! I'd be curious to hear what the high level takeaways from your comparison was, if you don't mind sharing."
+thread:,,
+,"Martin Ždila (@martinzdila)","@nebrius @code eb deploy"
+,"Bryan Hughes (@nebrius)","@martinzdila @code Not surprisingly, I haven't played around with elastic beanstalk before. What do you like about… https://t.co/N4PCLOk8IV"
+thread:,,
+,"rektide de la fey (@rektide)","@nebrius i use both systemd &amp; helm. helm is great for k8s app deployment.\\n\\n#systemd is simply the most important, m… https://t.co/p7Qlf5CrNr"
+thread:,,
+,"rafælcastrocouto (@racascou)","@nebrius I use heroku auto hooked with github.\\nI just need to commit and everything is online."
+thread:,,
+,"Jennifer Bland (@ratracegrad)","@nebrius Heroku.  And congrats on the new job"
+,"Bryan Hughes (@nebrius)","@ratracegrad Thanks Jennifer!\\n\\nWhat do you like most about Heroku? Is it the nice user experience they've created? Something else?"
+,"Jennifer Bland (@ratracegrad)","@nebrius I love it because it so freaking easy to deploy.  Can you say:\\ngit push heroku master\\nthen deployment is d… https://t.co/gdLTgF9BQt"
+thread:,,
+,"The gallant knight (@btyga)","@nebrius @code Appveyor for my electron app"
+,"Bryan Hughes (@nebrius)","@btyga @code I haven't used Appveyor myself before. What do you think of it?"
+,"The gallant knight (@btyga)","@nebrius @code I think it does a great job. I'm not a windows guy but it compiles my app in no time deploys to gith… https://t.co/RIEPqU9xzk"
+thread:,,
+,"Francis 🚀 Gulotta (@reconbot)","@nebrius SAM and shep, but looking longingly at https://t.co/OsuhG7emdH\\n\\nThe idea is that you describe the infra yo… https://t.co/uFCFgnHQPn"
+thread:,,
+,"Florent Jaby (@Floby)","@nebrius @dshaw I love how heroku handles it. Let's me worry only about processes.\\nOtherwise a docker image is close second."
+thread:,,
+,"yolonda smith (@ysmithnd)","@nebrius @soniagupta504 GitHub &gt; Travis &gt; firebase (cloud functions, hosting &amp;&amp;   Real-time database)"
+,"Bryan Hughes (@nebrius)","@ysmithnd @soniagupta504 Thanks! I haven't played with Firebase myself before. What do you think about it and the r… https://t.co/nC4dDUSvgr"
+,"yolonda smith (@ysmithnd)","@nebrius Honestly setup and config was a breeze. I started on serverless cli and quickly became overwhelmed. I’d li… https://t.co/Vdj2dEGvvz"
+,"Bryan Hughes (@nebrius)","@ysmithnd That's good to know, thank you!"
+thread:,,
+,"Alex Bjorlig (@DauleDK)","@nebrius Webpack, Heroku and error tracking with @getsentry :)"
+,"Bryan Hughes (@nebrius)","@DauleDK @getsentry How do you feel about your setup? What do you like, what do you wish could be better?"
+thread:,,
+,"Jonny Burger (@JNYBGR)","@nebrius I deploy it to Heroku, because:\\n- Easily auto-deploy from master\\n- Easily allows to rollback bad deploys\\n-… https://t.co/CxAs7wk3T2"
+thread:,,
+,"⚡️ Charles (@charlespeters)","@nebrius i really like zeit's now, because running `now` to deploy something is amazing\\ni like travis ci for tests… https://t.co/gQvsWs3RB2"
+thread:,,
+,"jods (@shriker)","@nebrius serverless toolkit, Bitbucket Pipelines for a few small things (suspiciously easy to set up), Jenkins (can… https://t.co/C1mv6buVAh"
+thread:,,
+,"TxtSync (@TxtSync)","@nebrius @dshaw We use the serverless framework to deploy to aws. The framework includes webpack that does all the… https://t.co/Yt04x7fo8a"
+thread:,,
+,"Evan Lucas (@evanhlucas)","@nebrius GitLab, GKE via helm charts"
+thread:,,
+,"Saud (@Saud_Tauqeer)","@nebrius @code Github -&gt; Travis -&gt; Heroku"
+,"Bryan Hughes (@nebrius)","@Saud_Tauqeer @code What do you think about this setup? Is it seamless, or are there pain points you struggle with?"
+,"Saud (@Saud_Tauqeer)","@nebrius @code The setup really works seamlessly for me. It's very easy to set up and get started with. You define… https://t.co/ID8twssuA2"
+thread:,,
+,"Jonathan 🇬🇧 (@conw_y)","@nebrius Most recently, @goserverless to deploy lambda functions to @awscloud. Love the simplicity and avoidance of… https://t.co/66OVWdsPcu"
+thread:,,
+,"Oded Breiner (@odedhb)","@nebrius @code Gitlab CI/CD with Amazon Lightsail"
+thread:,,
+,"Cody Sand (@marpstar)","@nebrius @code I use @DeployBotHQ to push the files and `pm2` for node process management (i.e. booting the app aft… https://t.co/jTBO33rxUR"
+thread:,,
+,"Adrian Carolli (@icookandcode)","@nebrius I use kudu, https://t.co/5Z0xNlPtqA and azure pipelines for different projects. I love now the most becaus… https://t.co/lYSutXUyiT"
+,"Bryan Hughes (@nebrius)","@icookandcode Thanks Adrian. I've heard of other folks using Now as well and really liking it. It's on my list to e… https://t.co/hGiJ1i4tb6"
+thread:,,
+,"Santi (@SantiMA10)","@nebrius @code Google Cloud SDK, App Engine, @Firebase Cloud Functions, @circleci and @CodeShip"
+thread:,,
+,"Tim Ermilov (@yamalight)","@nebrius I built my own (relatively popular) thing to do self-hosted one command deployments (based on docker) - https://t.co/1IC22YBIYe"
+,"Bryan Hughes (@nebrius)","@yamalight Oh cool, nice work! Have you by chance looked into any cloud vendor integrations for exoframe, such as the Azure Marketplace?"
+,"Tim Ermilov (@yamalight)","@nebrius Not yet at least, but there's been more than one request already! :)\\nWe have own servers for pretty much e… https://t.co/LYESNXhvwo"
+,"Bryan Hughes (@nebrius)","@yamalight Totally understandable...most of my own OSS projects work well for my use cases and noticeably less well… https://t.co/91dKgfHaw2"
+,"Tim Ermilov (@yamalight)","@nebrius Totally relatable 😂\\nAlthough Exoframe should (at least in theory) be flexible enough to work with cloud pr… https://t.co/MGBmCbKLcS"
+thread:,,
+,"Adam (@ark9719)","@nebrius GCloud SDK, git hooks - ease of use, easy project aliasing, and it's very easy to get *monthly* Google clo… https://t.co/baTPyGWTdJ"
+thread:,,
+,"ovhemert.dev 👨🏻‍💻 (@osmondvanhemert)","@nebrius Travis for osx and tux build/test/deploy,... appveyor for windows build/tests. And Azure DevOps for some v… https://t.co/fgJSGkmQwn"
+,"Bryan Hughes (@nebrius)","@osmondvanhemert Thanks, that makes a lot of sense."
+thread:,,
+,"Bryan Hughes (@nebrius)","Full transparency, we want to collect this feedback so we (Microsoft) can improve the tools and services that we cr… https://t.co/78sphhMy6k"
+,"Michael Mathy (@MichaelMathy)","@nebrius For the moment, just a git push on a web app in azure.\\nAnd same via @Clever_Support"
+,"Jan Lehnardt (@janl)","@nebrius travis, docker/hub, a custom deploy server that runs docker on each node."
+,"Eric Nograles (@grales)","@nebrius Not trying to be facetious: if you adopted Up by https://t.co/xvm0KfJczT or a tool that was a pretty close… https://t.co/gwh0mNEuZ8"
+,"Bryan Hughes (@nebrius)","@grales Not facetious at all, thank you!"
+,"Max (@maxharris9)","@nebrius N|Solid (https://t.co/gZLjaXc61h)\\n\\nN|Solid for AWS Lambda (https://t.co/vzjeFBspxH)\\n\\n(I'm not shilling her… https://t.co/Qcah4nUox2"
