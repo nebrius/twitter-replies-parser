@@ -37,56 +37,97 @@ app.get('/', (req, res) => {
 
 app.post('/api/analyze', (req, clientRes) => {
   const { tweetUrl } = req.body;
-  const [ , username, tweetId ] = idRegex.exec(new URL(tweetUrl).pathname);
-  if (!username || !tweetId) {
+  const [ , username, rooTweetId ] = idRegex.exec(new URL(tweetUrl).pathname);
+  const tweets = [];
+  if (!username || !rooTweetId) {
     throw new Error(`Invalid tweet url "${tweetUrl}"`);
   }
-  oauth.get(
-    `https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${username}&since_id=${tweetId}&exclude_replies=false`,
-    process.env.TWITTER_ACCESS_TOKEN, //test user token
-    process.env.TWITTER_ACCESS_SECRET, //test user secret
-    (err, data, res) => {
-      console.log(err, data, res);
+
+  query();
+
+  function query(next) {
+    oauth.post(
+      'https://api.twitter.com/1.1/tweets/search/30day/dev.json',
+      process.env.TWITTER_ACCESS_TOKEN, //test user token
+      process.env.TWITTER_ACCESS_SECRET, //test user secret
+      JSON.stringify({
+        query: `to:${username} OR from:${username}`,
+        next
+      }), // POST body
+      'application/json', // POST type
+      (err, data, res) => {
+        if (err) {
+          clientRes.sendStatus(500);
+          throw err;
+        }
+        const parsedData = JSON.parse(data);
+        tweets.push(...parsedData.results);
+        if (parsedData.next) {
+          query(parsedData.next);
+        } else {
+          processResults();
+        }
+      }
+    );
+  }
+
+  function processResults() {
+    // Create a dictionary of all tweets
+    const tweetDictionary = {};
+    for (const tweet of tweets) {
+      tweetDictionary[tweet.id_str] = {
+        replies: [],
+        ...tweet
+      };
     }
-  );
-  // oauth.post(
-  //   'https://api.twitter.com/1.1/tweets/search/30day/dev.json',
-  //   process.env.TWITTER_ACCESS_TOKEN, //test user token
-  //   process.env.TWITTER_ACCESS_SECRET, //test user secret
-  //   JSON.stringify({
-  //     query: `to:${username}`
-  //   }), // POST body
-  //   'application/json', // POST type
-  //   (err, data, res) => {
-  //     if (err) {
-  //       clientRes.sendStatus(500);
-  //       throw err;
-  //     }
-  //     const parsedData = JSON.parse(data).results;
+    if (!tweetDictionary.hasOwnProperty(rooTweetId)) {
+      throw new Error(`Root tweet with ID ${rooTweetId} was not found in the results`);
+    }
+    const rootTweet = tweetDictionary[rooTweetId];
+    const rootTweetDate = new Date(rootTweet.created_at).getTime();
 
-  //     const baseTweetIds = parsedData.filter((post) =>
-  //       (post.id === tweetId || post.id_str === tweetId ||
-  //         post.in_reply_to_status_id === tweetId || post.in_reply_to_status_id_str === tweetId) &&
-  //       post.user.screen_name === username
-  //       ).map((post) => post.id_str).concat([ tweetId ]);
+    // Filter all results from before this tweet...it helps at least a little in the warning messages below
+    for (const tweetId in tweetDictionary) {
+      const tweet = tweetDictionary[tweetId];
+      if (rootTweetDate > (new Date(tweet.created_at)).getTime()) {
+        delete tweetDictionary[tweetId];
+      }
+    }
 
-  //     function traverse(tweetId) {
-  //       const replies = parsedData.filter((post) => post.in_reply_to_status_id === tweetId || post.in_reply_to_status_id_str === tweetId);
-  //       for (let i = 0; i < replies.length; i++) {
-  //         replies[i] = [ replies[i], ...traverse(replies[i].id_str) ];
-  //       }
-  //       return replies;
-  //     }
+    // Link the replies to each tweet
+    for (const tweetId in tweetDictionary) {
+      if (tweetId === rooTweetId) {
+        continue;
+      }
+      const tweet = tweetDictionary[tweetId];
+      if (!tweet.in_reply_to_status_id_str) {
+        if (tweet.text.indexOf('RT @') !== 0) {
+          console.warn(`Tweet ${tweetId} has no reply to id: ${tweet.text}\n`);
+        }
+        continue;
+      }
+      if (!tweetDictionary.hasOwnProperty(tweet.in_reply_to_status_id_str)) {
+        console.warn(`Tweet reply id ${tweet.in_reply_to_status_id_str} is missing in dictionary: ${tweet.text}\n`);
+        continue;
+      }
+      tweetDictionary[tweet.in_reply_to_status_id_str].replies.push(tweet);
+    }
 
-  //     let tweets = [];
-  //     for (const baseTweetId of baseTweetIds) {
-  //       tweets = tweets.concat(traverse(baseTweetId));
-  //     }
-  //     console.log(tweets);
+    function processTweet(thread, tweet) {
+      thread.push({
+        author: `${tweet.user.name} (@${tweet.user.screen_name})`,
+        text: tweet.text
+      });
+      for (const reply of tweet.replies) {
+        processTweet(thread, reply);
+      }
+      return thread;
+    }
+    const tweetThreads = rootTweet.replies.map((reply) => processTweet([], reply));
+    console.log(tweetThreads);
 
-  //     clientRes.send('ok');
-  //   }
-  // );
+    clientRes.send('ok');
+  }
 });
 
 app.listen(PORT, () => console.log(`Twitter Replies server listening on port ${PORT}!`));
