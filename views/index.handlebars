@@ -4,6 +4,10 @@
 <script>
 function analyzeTweet() {
   const url = document.getElementById('url');
+  if (!url) {
+    alert('You must select both a Tweet URL and a filename to save results');
+    return;
+  }
   fetch('/api/analyze', {
     method: 'POST',
     headers: {
@@ -12,7 +16,11 @@ function analyzeTweet() {
     body: JSON.stringify({
       tweetUrl: url.value
     })
-  }).then(() => alert('done'));
+  }).then((res) => res.text()).then((text) => {
+    const status = document.getElementById('status');
+    status.innerText = `Results written to ${text}`;
+    alert('Done');
+  });
 }
 </script>
 </head>
@@ -21,11 +29,13 @@ function analyzeTweet() {
 <div>
   <div>
     <span>Enter tweet URL: </span>
-    <input type="text" id="url" />
+    <input type="text" id="url" style="width:100%;" />
   </div>
+  <br />
   <div>
     <button onclick="analyzeTweet()">Analyze</button>
   </div>
 </div>
+<div id="status" />
 </body>
 </html>

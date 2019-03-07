@@ -1,8 +1,10 @@
 const express = require('express');
 const { json } = require('body-parser');
 const { compile } = require('handlebars');
+const { AllHtmlEntities } = require('html-entities');
+const downloadsFolder = require('downloads-folder');
 const { join } = require('path');
-const { readFileSync, writeFileSync } = require('fs');
+const { readFileSync, writeFile } = require('fs');
 const { OAuth } = require('oauth');
 
 const PORT = 8080;
@@ -47,7 +49,7 @@ app.post('/api/analyze', (req, clientRes) => {
 
   function query(next) {
     oauth.post(
-      'https://api.twitter.com/1.1/tweets/search/30day/dev.json',
+      'https://api.twitter.com/1.1/tweets/search/30day/dev.json?tweet_mode=extended',
       process.env.TWITTER_ACCESS_TOKEN, //test user token
       process.env.TWITTER_ACCESS_SECRET, //test user secret
       JSON.stringify({
@@ -74,10 +76,13 @@ app.post('/api/analyze', (req, clientRes) => {
   function processResults() {
     // Create a dictionary of all tweets
     const tweetDictionary = {};
+    const entities = new AllHtmlEntities();
     for (const tweet of tweets) {
+      const text = tweet.truncated ? tweet.extended_tweet.full_text : tweet.text
       tweetDictionary[tweet.id_str] = {
+        ...tweet,
         replies: [],
-        ...tweet
+        text
       };
     }
     if (!tweetDictionary.hasOwnProperty(rooTweetId)) {
@@ -86,10 +91,10 @@ app.post('/api/analyze', (req, clientRes) => {
     const rootTweet = tweetDictionary[rooTweetId];
     const rootTweetDate = new Date(rootTweet.created_at).getTime();
 
-    // Filter all results from before this tweet...it helps at least a little in the warning messages below
+    // Filter out tweets sent before the base tweet and tweets that are retweets
     for (const tweetId in tweetDictionary) {
       const tweet = tweetDictionary[tweetId];
-      if (rootTweetDate > (new Date(tweet.created_at)).getTime()) {
+      if (rootTweetDate > (new Date(tweet.created_at)).getTime() || tweet.text.indexOf('RT @') === 0) {
         delete tweetDictionary[tweetId];
       }
     }
@@ -101,9 +106,7 @@ app.post('/api/analyze', (req, clientRes) => {
       }
       const tweet = tweetDictionary[tweetId];
       if (!tweet.in_reply_to_status_id_str) {
-        if (tweet.text.indexOf('RT @') !== 0) {
-          console.warn(`Tweet ${tweetId} has no reply to id: ${tweet.text}\n`);
-        }
+        console.warn(`Tweet ${tweetId} has no reply to id: ${tweet.text}\n`);
         continue;
       }
       if (!tweetDictionary.hasOwnProperty(tweet.in_reply_to_status_id_str)) {
@@ -113,7 +116,21 @@ app.post('/api/analyze', (req, clientRes) => {
       tweetDictionary[tweet.in_reply_to_status_id_str].replies.push(tweet);
     }
 
-    // TODO: collapse root tweets!
+    let tweetsCollapsed = true;
+    while (tweetsCollapsed) {
+      tweetsCollapsed = false;
+      function collapseTweet(baseTweet) {
+        for (let i = baseTweet.replies.length - 1; i >= 0; i--) {
+          const reply = baseTweet.replies[i];
+          if (reply.user.screen_name === username) {
+            tweetsCollapsed = true;
+            baseTweet.replies.splice(i, 1);
+            baseTweet.replies.push(...reply.replies);
+          }
+        }
+      }
+      collapseTweet(rootTweet);
+    }
 
     function processTweet(thread, tweet) {
       thread.push({
@@ -126,20 +143,16 @@ app.post('/api/analyze', (req, clientRes) => {
       return thread;
     }
     const tweetThreads = rootTweet.replies.map((reply) => processTweet([], reply));
-    let csvData = '';
-    function escapeCSVField(text) {
-      return text.replace(/\"/g, '""').replace(/\n/g, '\\\\n');
-    }
-    for (const thread of tweetThreads) {
-      csvData += 'thread:,,\n';
-      for (const reply of thread) {
-        csvData += `,"${escapeCSVField(reply.author)}","${escapeCSVField(reply.text)}"\n`
-      }
-    }
-    writeFileSync(join(__dirname, '..', `${username}.csv`), csvData);
 
-    clientRes.send('ok');
+    const filename = join(downloadsFolder(), `${username}-${rooTweetId}.json`);
+    writeFile(filename, JSON.stringify(tweetThreads, null, '  '), (err) => {
+      if (err) {
+        clientRes.sendStatus(500);
+      } else {
+        clientRes.send(filename);
+      }
+    });
   }
 });
 
-app.listen(PORT, () => console.log(`Twitter Replies server listening on port ${PORT}!`));
+app.listen(PORT, () => console.log(`Twitter Replies server running. Open your browser to http://localhost:${PORT} to use this tool`));

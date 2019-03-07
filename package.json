@@ -19,8 +19,10 @@
   "devDependencies": {},
   "dependencies": {
     "body-parser": "^1.18.3",
+    "downloads-folder": "^1.0.1",
     "express": "^4.16.4",
     "handlebars": "^4.1.0",
+    "html-entities": "^1.2.1",
     "oauth": "^0.9.15"
   }
 }
