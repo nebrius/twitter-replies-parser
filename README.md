@@ -10,6 +10,7 @@ Then, you will need to clone this project and set the following environment vari
 - TWITTER_CONSUMER_SECRET: your Consumer API secret key
 - TWITTER_ACCESS_TOKEN: your access token, which you can create in the same page containing your Consumer API key
 - TWITTER_ACCESS_SECRET: your access token secret
+- TWITTER_ENV: the name of your twitter app environment, e.g. `dev`
 
 You can find these on your app page, which as of this writing looks like this:
 

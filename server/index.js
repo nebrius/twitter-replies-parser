@@ -23,6 +23,10 @@ if (!process.env.TWITTER_ACCESS_TOKEN || !process.env.TWITTER_ACCESS_SECRET) {
   throw new Error('You must define the TWITTER_ACCESS_TOKEN and TWITTER_ACCESS_SECRET environment variables');
 }
 
+if (!process.env.TWITTER_ENV) {
+  throw new Error('You must define the TWITTER_ENV environmne variable');
+}
+
 const oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token',
   'https://api.twitter.com/oauth/access_token',
@@ -49,7 +53,7 @@ app.post('/api/analyze', (req, clientRes) => {
 
   function query(next) {
     oauth.post(
-      'https://api.twitter.com/1.1/tweets/search/30day/dev.json?tweet_mode=extended',
+      `https://api.twitter.com/1.1/tweets/search/30day/${process.env.TWITTER_ENV}.json?tweet_mode=extended`,
       process.env.TWITTER_ACCESS_TOKEN, //test user token
       process.env.TWITTER_ACCESS_SECRET, //test user secret
       JSON.stringify({
